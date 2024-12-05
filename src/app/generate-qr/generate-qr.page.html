@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Generar QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="content">
+  <ion-list>
+    <ion-card *ngFor="let class of classes" class="class-card">
+      <ion-card-content>
+        <!-- Título con estilo mejorado -->
+        <h2 class="class-title">{{ class.className }}</h2>
+        
+        <!-- Tabla de información -->
+        <ion-grid>
+          <!-- Fila para Sigla y Fecha -->
+          <ion-row>
+            <ion-col size="6" class="column-header">Sigla</ion-col>
+            <ion-col size="6" class="column-data">{{ class.classCode }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="column-header">Fecha</ion-col>
+            <ion-col size="6" class="column-data">{{ class.classDate | date: 'shortDate' }}</ion-col>
+          </ion-row>
+          
+          <!-- Fila para Hora de Inicio y Término -->
+<!-- Fila para "Hora Inicio" -->
+<ion-row>
+  <ion-col size="6" class="column-header">Hora Inicio</ion-col>
+  <ion-col size="6" class="column-data">{{ class.startTime | date: 'HH:mm' }}</ion-col>
+</ion-row>
+
+<!-- Fila para "Hora Término" -->
+<ion-row>
+  <ion-col size="6" class="column-header">Hora Término</ion-col>
+  <ion-col size="6" class="column-data">{{ class.endTime | date: 'HH:mm' }}</ion-col>
+</ion-row>
+
+
+          <!-- Fila para el código QR -->
+          <ion-row>
+            <ion-col size="12" class="column-header">QR CODE</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="column-data qr-container">
+              <img [src]="class.qrCode" alt="Código QR" class="qr-image" *ngIf="class.qrCode" />
+            </ion-col>
+          </ion-row>
+
+          <!-- Fila para el Código de Acceso -->
+          <ion-row>
+            <ion-col size="6" class="column-header">Código de acceso</ion-col>
+            <ion-col size="6" class="column-data">{{ class.accessCode }}</ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- Grupo de botones -->
+        <div class="button-group">
+          <ion-button color="primary" (click)="generateQRCode(class.id || '')">Generar QR</ion-button>
+          <ion-button color="secondary" (click)="editClass(class.id || '')">Editar</ion-button>
+          <ion-button color="danger" (click)="confirmDeleteClass(class.id || '')">Eliminar</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

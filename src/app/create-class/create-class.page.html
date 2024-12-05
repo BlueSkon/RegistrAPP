@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrar Clase</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" fullscreen id="content">
+  <ion-card class="form-card">
+    <ion-card-header>
+      <ion-card-title class="form-title">Detalles de la Clase</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <form (submit)="saveClass()">
+        <!-- Campo para el Nombre de la Clase -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Nombre de la Clase</ion-label>
+          <ion-input [(ngModel)]="className" name="className" required></ion-input>
+        </ion-item>
+        
+        <!-- Campo para la Sigla -->
+        <ion-item class="input-item">
+          <ion-label position="floating">Sigla</ion-label>
+          <ion-input [(ngModel)]="classCode" name="classCode" required></ion-input>
+        </ion-item>
+        
+        <!-- Campo desplegable para Fecha de la Clase -->
+        <ion-item class="input-item" button (click)="toggleDatePicker('date')">
+          <ion-label>Fecha de la Clase</ion-label>
+        </ion-item>
+        <ion-datetime
+          *ngIf="showDatePicker"
+          [(ngModel)]="classDate"
+          presentation="date"
+          (ionChange)="handleClassDateChange($event)"
+          display-format="DD/MM/YYYY">
+        </ion-datetime>
+        
+        <!-- Campo desplegable para Hora de Inicio -->
+        <ion-item class="input-item" button (click)="toggleDatePicker('startTime')">
+          <ion-label>Hora de Inicio</ion-label>
+        </ion-item>
+        <ion-datetime
+          *ngIf="showStartTimePicker"
+          [(ngModel)]="startTime"
+          presentation="time"
+          (ionChange)="handleStartTimeChange($event)"
+          display-format="HH:mm">
+        </ion-datetime>
+        
+        <!-- Campo desplegable para Hora de Término -->
+        <ion-item class="input-item" button (click)="toggleDatePicker('endTime')">
+          <ion-label>Hora de Término</ion-label>
+        </ion-item>
+        <ion-datetime
+          *ngIf="showEndTimePicker"
+          [(ngModel)]="endTime"
+          presentation="time"
+          (ionChange)="handleEndTimeChange($event)"
+          display-format="HH:mm">
+        </ion-datetime>
+
+        <!-- Botón para Guardar Clase -->
+        <div class="button-group">
+          <ion-button expand="block" type="submit" color="primary">Guardar Clase</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

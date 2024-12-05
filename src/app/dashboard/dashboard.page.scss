@@ -1,0 +1,49 @@
+// Contenedor principal
+/*Estilización de la Tarjeta de Bienvenida */
+
+ion-content {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --background: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  // Contenedor de perfil centrado
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  // Contenedor de la imagen de perfil (circular)
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  // Imagen de perfil
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  // Contenedor de bienvenida centrado
+  .welcome-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .welcome-container h2, .welcome-container p {
+    margin: 8px 0;
+  }
+  

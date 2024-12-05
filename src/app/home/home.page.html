@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Tarjeta de Bienvenida -->
+  <ion-card class="welcome-card">
+    <ion-card class="welcome-card">
+      <img  src="assets/icon/logoduocuc.png" alt="logotipo de la Empresa" class="logo" />
+    </ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">¡Bienvenido de nuevo!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-text-center">Ingresa tus credenciales para acceder a tu cuenta.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Formulario de Inicio de Sesión en Tarjeta -->
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+      <!-- Botones de Acción -->
+      <div class="ion-margin-top">
+        <ion-button expand="block" color="primary" (click)="loginUser()">Iniciar sesión</ion-button>
+        <ion-button expand="block" color="secondary" (click)="goToRegisterPage()">Crear cuenta</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Mensaje de Error -->
+  <ion-text color="danger" *ngIf="errorMessage" class="ion-text-center">{{ errorMessage }}</ion-text>
+
+</ion-content>

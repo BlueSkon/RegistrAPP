@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Consulta de Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Listado de Asistencia -->
+  <ion-list *ngIf="attendanceByClass | keyvalue; else noAttendance">
+    <ng-container *ngFor="let classGroup of attendanceByClass | keyvalue">
+      <!-- Tarjeta para cada clase -->
+      <ion-card class="class-card">
+        <ion-card-header>
+          <ion-card-title>{{ classGroup.key }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- Tabla de asistencia -->
+          <div class="table-container">
+            <table class="attendance-table">
+              <thead>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of classGroup.value">
+                  <td>{{ record.studentName }}</td>
+                  <td>{{ record.attendanceDate | date: 'shortDate' }}</td>
+                  <td>{{ record.attendanceDate | date: 'shortTime' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ion-list>
+
+  <ng-template #noAttendance>
+    <ion-item>
+      <ion-label>No se encontraron registros de asistencia para las clases.</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

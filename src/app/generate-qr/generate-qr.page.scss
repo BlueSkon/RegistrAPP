@@ -1,0 +1,63 @@
+/* Estilo de la tarjeta de clase */
+.class-card {
+  margin: 15px 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+/* Estilo para el título */
+.class-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Estilo de encabezados de columna */
+.column-header {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #3a73b3;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Celdas de datos */
+.column-data {
+  color: #333;
+  text-align: center;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+/* Contenedor del QR */
+.qr-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+/* Imagen QR */
+.qr-image {
+  width: 100px;
+  height: 100px;
+}
+
+/* Grupo de botones */
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+ion-button {
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

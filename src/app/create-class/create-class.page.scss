@@ -1,0 +1,77 @@
+/* Estilo de la tarjeta de formulario */
+.form-card {
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 16px; /* Bordes redondeados */
+    background-color: #ffffff;
+  }
+  
+  /* Estilo para el título de la tarjeta */
+  .form-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Estilo de los items de entrada */
+  .input-item {
+    margin-bottom: 15px;
+    --background: #f1f5f9; /* Fondo claro para cada campo */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    text-align: center;
+  }
+  
+  /* Centrado del contenido del item */
+  .input-item ion-label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9em;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .input-item ion-input,
+  .input-item ion-datetime {
+    padding: 10px;
+    font-size: 1em;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Grupo de botones */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  
+  /* Estilo del botón de Guardar */
+  ion-button {
+    border-radius: 12px; /* Bordes redondeados */
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    padding: 12px 24px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #3a73b3, #285a99); /* Gradiente */
+    color: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Efecto de hover para el botón */
+  ion-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  }
+  

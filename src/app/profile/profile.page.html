@@ -1,0 +1,54 @@
+
+<!-- Navbar de la página -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" fullscreen id="content">
+  <!-- Contenido de perfil centrado -->
+  <div class="profile-container">
+    <!-- Imagen de Perfil -->
+    <div class="profile-image-container">
+      <ion-img [src]="userData?.photoURL || 'assets/default-profile.png'" class="profile-image"></ion-img>
+    </div>
+
+    <!-- Ícono de cámara al lado de la imagen de perfil -->
+    <div class="camera-icon" *ngIf="isEditing" (click)="fileInput.click()">
+      <ion-icon name="camera"></ion-icon>
+    </div>
+    <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+  </div>
+
+  <!-- Botón de Confirmación de Subida de Imagen -->
+  <ion-button *ngIf="isEditing && selectedFile" (click)="uploadPhoto()" class="upload-button">
+    Subir Imagen
+  </ion-button>
+
+  <!-- Nombre Completo -->
+  <ion-item>
+    <ion-label position="floating">Nombre Completo</ion-label>
+    <ion-input [(ngModel)]="fullName" [readonly]="!isEditing"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="floating">RUT</ion-label>
+    <ion-input [(ngModel)]="rut" [readonly]="!isEditing"></ion-input>
+  </ion-item>
+
+  <!-- Correo Electrónico -->
+  <ion-item>
+    <ion-label>Correo Electrónico</ion-label>
+    <ion-text>{{ userData?.email }}</ion-text>
+  </ion-item>
+
+  <!-- Botón de Actualizar Datos centrado -->
+  <div class="button-container">
+    <ion-button *ngIf="!isEditing" (click)="toggleEdit()" class="update-button">Actualizar Datos</ion-button>
+    <ion-button *ngIf="isEditing" (click)="updateUserData()" class="update-button">Guardar</ion-button>
+  </div>
+</ion-content>

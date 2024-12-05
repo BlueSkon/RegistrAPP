@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Clase</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="updateClassData()">
+    <ion-item>
+      <ion-label position="floating">Nombre de la Clase</ion-label>
+      <ion-input [(ngModel)]="classData.className" name="className" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Sigla</ion-label>
+      <ion-input [(ngModel)]="classData.classCode" name="classCode" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de la Clase</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="classData.classDate" name="classDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora de Inicio</ion-label>
+      <ion-datetime display-format="HH:mm" [(ngModel)]="classData.startTime" name="startTime"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora de Término</ion-label>
+      <ion-datetime display-format="HH:mm" [(ngModel)]="classData.endTime" name="endTime"></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="primary">Actualizar Clase</ion-button>
+  </form>
+</ion-content>

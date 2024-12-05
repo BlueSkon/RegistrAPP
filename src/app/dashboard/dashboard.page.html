@@ -1,0 +1,44 @@
+<!-- Navbar -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contenido principal centrado -->
+<ion-content [scrollEvents]="true" fullscreen id="content">
+
+  <!-- Imagen de Perfil centrada y estilizada -->
+  <div class="profile-container">
+    <div class="profile-image-container">
+      <ion-img [src]="userData?.photoURL || 'assets/default-profile.png'" class="profile-image"></ion-img>
+    </div>
+  </div>
+
+  <!-- Información de Bienvenida en Tarjeta -->
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Bienvenido, {{ userData?.fullName }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <p>Correo electrónico: {{ userData?.email }}</p>
+            <p>Rol: {{ userRole | titlecase }}</p>
+            <p>Fecha y Hora: {{ currentTime }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="welcome-card">
+    <img  src="assets/icon/logoduocuc.png" alt="logotipo de la Empresa" class="logo" />
+  </ion-card>
+  
+
+
+</ion-content>

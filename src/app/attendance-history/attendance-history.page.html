@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Historial de Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Filtros -->
+  <ion-item>
+    <ion-input [(ngModel)]="filterClassName" (ngModelChange)="applyFilters()" placeholder="Filtrar por nombre de la clase" style="text-align: center;"></ion-input>
+  </ion-item>
+  <ion-list class="attendance-card">
+  <!-- Filtro desplegable para fecha -->
+  <ion-item button (click)="toggleDatePicker()" detail="false">
+    <ion-label class="custom-label">Filtrar por fecha</ion-label>
+  </ion-item>
+
+  <ion-datetime
+    *ngIf="showDatePicker"
+    [(ngModel)]="filterDate"
+    (ionChange)="applyFilters(); toggleDatePicker()"
+    presentation="date">
+  </ion-datetime>
+
+  <!-- Lista de asistencia filtrada -->
+  
+    <ion-item *ngFor="let record of filteredAttendanceRecords">
+      <ion-label>
+        <h2>{{ record.className }}</h2>
+        <p>Sigla: {{ record.classCode }}</p>
+        <p>Fecha de Clase: {{ record.classDate | date: 'shortDate' }}</p>
+        <p>Hora de Inicio: {{ record.startTime | date: 'shortTime' }}</p>
+        <p>Profesor: {{ record.professorName }}</p>
+      </ion-label>
+    </ion-item >
+    <!-- Mensaje cuando no hay registros -->
+    <ion-item class="attendance-card" *ngIf="filteredAttendanceRecords.length === 0">
+      <ion-label>No se encontraron asistencias registradas.</ion-label>
+    </ion-item>
+  </ion-list>
+
+  
+  
+</ion-content>

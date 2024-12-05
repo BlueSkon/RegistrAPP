@@ -1,0 +1,72 @@
+// Contenedor principal
+ion-content {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --background: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  // Contenedor de perfil centrado
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; // Espacio entre la imagen de perfil y el ícono de la cámara
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  // Contenedor de la imagen de perfil
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  // Imagen de perfil
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  // Ícono de cámara al lado de la imagen de perfil
+  .camera-icon {
+    background-color: #00aaff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    color: #ffffff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+
+// Botón de Actualizar Datos y Guardar centrado
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; // Ocupa todo el ancho para que el botón esté centrado
+    margin-top: 20px;
+  }
+  
+  .update-button {
+    width: 80%; // Ajusta el ancho del botón para que esté centrado y tenga un tamaño adecuado
+    height: 50px;
+    background-color: #00aaff;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }

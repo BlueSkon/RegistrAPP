@@ -1,0 +1,11 @@
+{
+  "name": "RegistrAPP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "ssl": {
+    "key": "./localhost.key",
+    "cert": "./localhost.crt"
+  }
+}
