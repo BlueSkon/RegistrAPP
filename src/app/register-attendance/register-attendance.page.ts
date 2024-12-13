@@ -4,7 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
 import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
-
+import { Camera, CameraPermissionType, CameraResultType } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 interface ClassData {
   className: string;
   classCode: string;
@@ -51,7 +52,7 @@ export class RegisterAttendancePage implements OnInit {
     }
 
     const classDoc = await this.firestore.collection('classes', ref => ref.where('accessCode', '==', codeToUse)).get().toPromise();
-  
+
     if (classDoc && !classDoc.empty) {
       const classData = classDoc.docs[0].data() as ClassData;
       const studentName = this.currentUser?.displayName || this.currentUser?.email || 'Nombre no disponible';
@@ -79,32 +80,42 @@ export class RegisterAttendancePage implements OnInit {
   // Solicita permisos de cámara y, si son otorgados, inicia el escaneo de QR
   async startQrScan() {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (stream) {
-        this.initHtml5QrcodeScanner(); // Llama al método para iniciar el escaneo si se concede el permiso
+      if (Capacitor.isNativePlatform()) {
+        // Usa la cámara de Capacitor en dispositivos nativos
+        const permissions = await Camera.requestPermissions();
+        if (permissions.camera === 'granted') {
+          console.log('Permisos otorgados. Inicializando escáner...');
+          this.initHtml5QrcodeScanner(); // Alternativamente, usa otro método nativo aquí.
+        } else {
+          this.showAlert('Permiso denegado', 'Por favor, otorgue permisos de cámara en la configuración.');
+        }
+      } else {
+        // Usa Html5Qrcode en el navegador
+        console.log('Ejecutando en un navegador. Usando Html5Qrcode.');
+        this.initHtml5QrcodeScanner();
       }
     } catch (error) {
-      this.showAlert('Permiso denegado', 'Por favor, permita el uso de la cámara en la configuración.');
-      console.error('Error al solicitar permisos de cámara:', error);
+      console.error('Error al iniciar el escaneo:', error);
+      this.showAlert('Error', 'No se pudo acceder a la cámara.');
     }
   }
 
-  // Método para inicializar Html5QrcodeScanner
   private initHtml5QrcodeScanner() {
     const html5QrCode = new Html5QrcodeScanner(
-      this.readerElem.nativeElement.id,
+      "reader", // ID del contenedor en el HTML
       {
         fps: 10,
         qrbox: { width: 250, height: 250 },
         supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
       },
-      /* verbose= */ false
+      false
     );
-
+  
     html5QrCode.render(
       (decodedText) => {
+        console.log('Código QR detectado:', decodedText);
         this.scannerResult = decodedText;
-        html5QrCode.clear(); // Detiene el escaneo una vez que obtenemos un resultado
+        html5QrCode.clear(); // Detiene el escaneo
         this.registerAttendance(); // Registrar la asistencia automáticamente
       },
       (errorMessage) => {
@@ -112,7 +123,6 @@ export class RegisterAttendancePage implements OnInit {
       }
     );
   }
-
   // Mostrar alerta de éxito o error
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({

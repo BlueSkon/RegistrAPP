@@ -15,7 +15,9 @@
         <ion-label position="floating">Código de Acceso</ion-label>
         <ion-input [(ngModel)]="accessCode" name="accessCode"></ion-input>
       </ion-item>
-      <ion-button expand="block" (click)="registerAttendance()">Registrar Asistencia</ion-button>
+      <ion-button expand="block" color="primary" (click)="registerAttendance()">
+        Registrar Asistencia
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -26,14 +28,17 @@
     </ion-card-header>
     <ion-card-content>
       <!-- Contenedor del lector QR -->
-      <div #reader style="width: 100%; max-width: 300px; margin: auto;"></div>
-
-      <!-- Botón para iniciar el escaneo de QR -->
-      <ion-button expand="block" color="secondary" (click)="startQrScan()">Iniciar Escaneo QR</ion-button>
-
-      <!-- Resultado del escaneo -->
-      <div *ngIf="scannerResult">
-        <p>Resultado del escaneo: {{ scannerResult }}</p>
+      <div id="reader" style="width: 100%; max-width: 300px; margin: auto;"></div>
+  
+      <!-- Botón para iniciar el escaneo -->
+      <ion-button expand="block" color="secondary" (click)="startQrScan()">
+        Iniciar Escaneo QR
+      </ion-button>
+  
+      <!-- Mostrar el resultado del escaneo -->
+      <div *ngIf="scannerResult" style="margin-top: 15px; text-align: center;">
+        <p><strong>Resultado del escaneo:</strong></p>
+        <p>{{ scannerResult }}</p>
       </div>
     </ion-card-content>
   </ion-card>
