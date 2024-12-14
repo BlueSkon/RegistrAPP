@@ -32,12 +32,17 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
-        </provider>
+        </provider>   
     </application>
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- WRITE_EXTERNAL_STORAGE solo si trabajas con Android 9 o inferior -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"  />
+
+    <!-- Declaración de uso de cámara -->
     <uses-feature android:name="android.hardware.camera" android:required="true" />
 
 </manifest>

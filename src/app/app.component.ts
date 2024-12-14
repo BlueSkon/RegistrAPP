@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { Camera } from '@capacitor/camera'; // Importa Camera para solicitar permisos
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,13 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    // Solicita permisos al iniciar la aplicación
+    await this.requestPermissions();
+
     // Observa el rol del usuario en tiempo real
     this.authService.userRole$.subscribe(role => {
-      console.log("Rol del usuario:", role);
+      console.log('Rol del usuario:', role);
       this.userRole = role;
     });
 
@@ -29,6 +34,24 @@ export class AppComponent implements OnInit {
         this.userRole = 'desconocido';
       }
     });
+  }
+
+  async requestPermissions() {
+    try {
+      if (Capacitor.isNativePlatform()) {
+        // Solicita permisos de cámara
+        const permissions = await Camera.requestPermissions({ permissions: ['camera'] });
+        if (permissions.camera !== 'granted') {
+          console.warn('Permisos de cámara no otorgados');
+        } else {
+          console.log('Permisos de cámara otorgados');
+        }
+      } else {
+        console.log('No se requieren permisos de cámara en el navegador.');
+      }
+    } catch (error) {
+      console.error('Error al solicitar permisos:', error);
+    }
   }
 
   logoutUser() {
